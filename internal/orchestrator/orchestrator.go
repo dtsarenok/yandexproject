@@ -13,7 +13,7 @@ type Expression struct {
 	ID         string  `json:"id"`
 	Status     string  `json:"status"`
 	Result     float64 `json:"result,omitempty"`
-	Expression string  `json:"expression"` // Добавлено поле для хранения выражения
+	Expression string  `json:"expression"`
 }
 
 type Task struct {
@@ -91,7 +91,6 @@ func processExpression(expr Expression) {
 	var arg1, arg2 float64
 	var operation string
 
-	// Пример разбивки выражения (должен быть более сложным для реального случая)
 	if _, err := fmt.Sscanf(expr.Expression, "%f %s %f", &arg1, &operation, &arg2); err == nil {
 		Tasks <- Task{ID: expr.ID, Arg1: arg1, Arg2: arg2, Operation: operation}
 	}
